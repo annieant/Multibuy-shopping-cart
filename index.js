@@ -1,6 +1,5 @@
 (function() {
     "use strict";
-  //alert("test");
     var cartItems = [];
   
     var productList = [{
@@ -24,13 +23,11 @@
     
     $(document).on('click', '.remove_product', function() {
       $(this).closest('li').remove();
-      console.log("#######", $(this).closest('li').attr("key"));
       cartItems.splice($(this).closest('li').attr("key"), 1);
       updateCart();
     });
   
-    function generateCart() {
-      console.log("**************************");
+    function generateCart() {     
       productList.forEach(function(x) {
         $('<div/>', {
           'class': 'product',
@@ -47,7 +44,6 @@
       $(".cart").empty();
       $(".product-quantity").html(cartItems.length);
       cartItems.forEach(function(item, index) {
-        //console.log("**************************",item);
         $('<li/>', {
           "class": "cartList",
           "key": index,
@@ -73,8 +69,7 @@
         results[item.product] |= 0;
         results[item.product] += item.qty;
       }
-      console.log(results);
-  
+        
       for (var product in results) {
         var productPrice = getPriceOffer(product);
         if (productPrice[0].offer) {
@@ -82,7 +77,6 @@
         } else {
           total += results[product] * productPrice[0].price;
         }
-        console.log("count----->", results[product], "#######", productPrice[0].price, "total***", total);
       }
           return total;
     }
